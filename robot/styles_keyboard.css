@@ -1,0 +1,40 @@
+.keyboard-viewer {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.keyboard-viewer h3 {
+    margin-top: 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+.keyboard-viewer ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.keyboard-viewer li {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #999;
+    text-align: center;
+    line-height: 50px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+}
+
+.keyboard-viewer li.active {
+    background-color: #5e5e5e;
+    color: white;
+}

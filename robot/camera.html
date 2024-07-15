@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROS 카메라 이미지 표시</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #cameraImage {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <img id="cameraImage" src="" alt="카메라 이미지">
+    
+    <script src="https://cdn.jsdelivr.net/npm/roslib@1.1.0/build/roslib.min.js"></script>
+    <script>
+        var ros = new ROSLIB.Ros({
+            url: 'ws://192.168.123.118:9090'
+        });
+
+        var imageListener = new ROSLIB.Topic({
+            ros: ros,
+            name: '/camera/rgb/image_raw/compressed',
+            messageType: 'sensor_msgs/CompressedImage'
+        });
+
+        imageListener.subscribe(function(message) {
+            var imgData = "data:image/jpeg;base64," + message.data;
+            var imgElement = document.getElementById('cameraImage');
+            if (imgElement) {
+                imgElement.src = imgData;
+            } else {
+                console.error('Image element not found');
+            }
+        });
+    </script>
+</body>
+</html>

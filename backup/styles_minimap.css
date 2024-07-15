@@ -1,0 +1,126 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.header {
+  background-color: #ffffff;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.status-panel {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.status-panel p {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.status-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.main-content {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.left-panel, .right-panel {
+  flex: 1;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-container {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #fff;
+}
+
+.mapCanvas {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.additional-info {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 10;
+  left: 10px;
+  top: 10px;
+}
+
+.mini-map-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 200px;
+  height: 160px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.mini-map {
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+  position: relative;
+}
+
+.mini-map-viewport {
+  position: absolute;
+  border: 2px solid red;
+  box-sizing: border-box;
+}
+
+.mini-map-robot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: green;
+  transform: translate(-50%, -50%);
+}

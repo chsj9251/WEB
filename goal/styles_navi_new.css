@@ -1,0 +1,56 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 80px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preset-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* 버튼 사이의 간격을 조정합니다. */
+    padding: 10px;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 요소들 간의 간격을 조절합니다 */
+}
+
+.overlay {
+    position: relative;
+    width: 100%; /* 또는 필요에 따라 고정된 너비 */
+    height: 100%; /* 또는 필요에 따라 고정된 높이 */
+}
+
+#marker {
+    width: 50px; /* 이미지의 가로 크기 */
+    height: auto; /* 이미지의 세로 크기를 가로 비율에 맞추기 */
+}
+
+button {
+    width: 120px;
+    height: 50px;
+    font-size: 20px;
+    background-color: #071422;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: pre-line;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #030d18; /* 호버 시 배경색 변경 */
+  }

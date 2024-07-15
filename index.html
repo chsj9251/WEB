@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko"> <!-- lang 속성 추가 -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- viewport 설정 추가 -->
+  <title>RPM 로봇 관제 시스템</title>
+  <link rel="stylesheet" href="styles_common.css">
+</head>
+<body>
+  <div class="container">
+    <h2>로그인</h2>
+    <form action="/login/login.php" method="post">
+      <div class="form-group">
+        <div class="input-row">
+          <label for="manager_id" class="input-label">아이디 :</label>
+          <input type="text" id="manager_id" name="manager_id" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-row">
+          <label for="manager_pw" class="input-label">비밀번호 :</label>
+          <input type="password" id="manager_pw" name="manager_pw" required>
+        </div>
+      </div>
+      <!-- 관리자 코드 입력란 -->
+      <div class="form-group">
+        <div class="input-row">
+          <label for="admin_code" class="input-label">관리자코드 :</label>
+          <input type="password" id="admin_code" name="admin_code">
+        </div>
+      </div>
+
+      <input type="submit" value="로그인">
+      <div class="register-link">
+        <a href="/login/join_page.html">회원가입</a> <!-- | <a href="forgot.html">아이디/비밀번호 찾기</a> -->
+      </div>
+    </form>
+  </div>
+</body>
+</html>

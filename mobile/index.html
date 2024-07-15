@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모바일 기구선택</title>
+    <link rel="stylesheet" href="styles_mobile.css">
+</head>
+<body>
+    <div class="container">
+        <div class="preset-navigation" id="preset-navigation">
+            <!-- 여기에 이미지 버튼이 동적으로 추가됩니다 -->
+        </div>
+        <div id="moving-status" class="moving-status">
+            이동중<br>로봇을 따라가세요!
+        </div>
+        <button id="search-button" class="search-button" onclick="navigateToSearch()">기구검색</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/roslib@1.1.0/build/roslib.min.js"></script>
+    <script>
+        var ros = new ROSLIB.Ros({
+            url: 'ws://192.168.123.118:9090'
+        });
+
+        ros.on('connection', function() {
+            console.log('Connected to ROS');
+            updateConnectionStatus(true);
+        });
+
+        ros.on('error', function(error) {
+            console.log('Error connecting to ROS:', error);
+            updateConnectionStatus(false);
+        });
+
+        ros.on('close', function() {
+            console.log('Disconnected from ROS');
+            updateConnectionStatus(false);
+        });
+
+        function startNavigation(destinationX, destinationY, destinationZ, destinationW, presetNumber) {
+            var goalMessage = new ROSLIB.Message({
+                header: {
+                    frame_id: 'map',
+                    stamp: { secs: 0, nsecs: 0 }
+                },
+                pose: {
+                    position: {
+                        x: destinationX,
+                        y: destinationY,
+                        z: 0.0
+                    },
+                    orientation: {
+                        x: 0.0,
+                        y: 0.0,
+                        z: destinationZ,
+                        w: destinationW
+                    }
+                }
+            });
+
+            var goalPublisher = new ROSLIB.Topic({
+                ros: ros,
+                name: '/move_base_simple/goal',
+                messageType: 'geometry_msgs/PoseStamped'
+            });
+
+            goalPublisher.publish(goalMessage);
+            console.log('Sent navigation goal:', destinationX, destinationY, destinationZ, destinationW);
+
+            // 목표 도착 후 안내 화면으로 이동
+            subscribeToGoalStatus(presetNumber);
+
+            // 이동 중 상태 표시
+            document.getElementById('moving-status').style.display = 'block';
+        }
+
+        function navigateToPreset(presetNumber) {
+            fetch(`getTargetCoordinates.php?targetNo=${presetNumber}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error('Error:', data.error);
+                    } else {
+                        startNavigation(data.target_x, data.target_y, data.target_z, data.target_w, presetNumber);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching coordinates:', error);
+                });
+        }
+
+        function loadPresets() {
+            fetch('getTargetList.php')
+                .then(response => response.json())
+                .then(data => {
+                    const presetContainer = document.getElementById('preset-navigation');
+                    let row;
+
+                    data.forEach((preset, index) => {
+                        if (index % 2 === 0) {
+                            // 새로운 행 생성
+                            row = document.createElement('div');
+                            row.className = 'preset-row';
+                            presetContainer.appendChild(row);
+                        }
+
+                        const button = document.createElement('button');
+                        button.style.backgroundImage = `url('image/${preset.target_name}.png')`; // 이미지 경로 설정
+                        button.onclick = () => navigateToPreset(preset.target_no);
+
+                        const label = document.createElement('div');
+                        label.className = 'button-label';
+                        label.textContent = preset.target_name;
+
+                        const buttonContainer = document.createElement('div');
+                        buttonContainer.className = 'button-container';
+                        buttonContainer.appendChild(button);
+                        buttonContainer.appendChild(label);
+
+                        row.appendChild(buttonContainer);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching target list:', error);
+                });
+        }
+
+        function subscribeToGoalStatus(presetNumber) {
+            var goalStatusListener = new ROSLIB.Topic({
+                ros: ros,
+                name: '/move_base/result',
+                messageType: 'move_base_msgs/MoveBaseActionResult'
+            });
+
+            goalStatusListener.subscribe(function(message) {
+                if (message.status.status === 3) { // Goal reached
+                    console.log('Goal reached');
+                    window.location.href = `ride_info.php?targetNo=${presetNumber}`;
+                    goalStatusListener.unsubscribe();
+                    // 이동 중 상태 숨김
+                    document.getElementById('moving-status').style.display = 'none';
+                }
+            });
+        }
+
+        function navigateToSearch() {
+            // 검색 버튼 클릭 시의 동작을 여기에 정의합니다.
+            // window.location.href = 'search.html';
+
+            // 아래 라인을 추가하여 안드로이드 액티비티로 이동
+            Android.goToAndroidActivity();
+        }
+
+        // 페이지 로드 시 프리셋 로드
+        window.onload = loadPresets;
+    </script>
+</body>
+</html>

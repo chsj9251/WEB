@@ -1,0 +1,141 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 400px; /* 최대 너비를 100%로 설정 */
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.header {
+  background-color: #ffffff;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.status {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.status p {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.status-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.status-container {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  margin: 10px auto;
+  padding: 10px;
+  text-align: left;
+}
+
+#mapContainer {
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+}
+
+#mapCanvas {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.additional-info {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 10; /* 다른 요소 위에 표시되도록 설정 */
+  left: 10px; /* 예시: 왼쪽에서 10px 위치 */
+  top: 10px; /* 예시: 위에서 10px 위치 */
+}
+
+iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  margin-top: 20px;
+  flex: 1; /* 자동으로 남은 공간을 차지하도록 설정 */
+}
+
+/* 이미지를 표시할 img 태그 스타일 */
+#cameraImage {
+  width: 100%; /* 부모 요소에 맞추어 너비 설정 */
+  height: auto; /* 비율에 맞추어 자동 조정 */
+  margin-top: 20px;
+}
+
+.main-content {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.left-panel, .right-panel {
+  flex: 1;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+}
+
+.additional-info {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+canvas {
+    width: 100%;
+    height: auto;
+}
+
+.camera, .data-table {
+  width: 45%;
+}

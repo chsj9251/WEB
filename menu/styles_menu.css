@@ -1,0 +1,88 @@
+/* 메뉴바 스타일 */
+#header {
+  width: 100%;
+  background-color: #0d1b2a;
+  color: white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+#site-icon {
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+}
+
+#page-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#menu-container {
+  width: 200px;
+  background-color: #2d5580;
+  padding: 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.menu-item {
+  display: block;
+  background-color: #0d1b2a;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s;
+  text-decoration: none; /* 링크 스타일 제거 */
+}
+
+.menu-item:hover {
+  background-color: #1a2e44;
+}
+
+#user-menu {
+  position: absolute;
+  top: 10px; /* 원하는 위치로 조정 */
+  right: 20px; /* 원하는 위치로 조정 */
+}
+
+#user-menu p {
+  margin: 0;
+}
+
+#user-menu a {
+  margin-left: 10px;
+}
+
+.menu-login-link {
+  position: absolute;
+  right: 20px;
+  margin-right: 20px;
+  font-weight: bold; /* 글씨를 굵게 만듭니다. */
+}
+
+.container {
+  margin-left: 26%;
+  width: 100%;
+  max-width: 1000px;
+}
+
+body {
+  background-color: #f0f0f0;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>로봇 위치 관제 시스템</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            function updateRobotPosition() {
+                $.ajax({
+                    url: "robot_position.php", // 데이터를 처리할 PHP 파일의 경로
+                    type: "GET",
+                    success: function(data) {
+                        $("#robot_position").html(data); // 로봇 위치 정보를 표시할 div에 데이터 삽입
+                    }
+                });
+            }
+
+            // 일정 간격마다 로봇 위치를 업데이트
+            setInterval(updateRobotPosition, 1000); // 1초마다 업데이트
+        });
+    </script>
+</head>
+<body>
+    <h1>로봇 위치 관제 시스템</h1>
+    <div id="robot_position">
+        <!-- 로봇 위치 정보가 여기에 업데이트됩니다. -->
+    </div>
+</body>
+</html>

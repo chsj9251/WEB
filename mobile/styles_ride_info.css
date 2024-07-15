@@ -1,0 +1,88 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* 기본 백그라운드 색상 */
+    color: #000000; /* 기본 글자 색상 */
+}
+
+/* 다크 모드 쿼리 */
+@media (prefers-color-scheme: dark) {
+    body, html {
+        background-color: #333333; /* 다크 모드 백그라운드 색상 */
+        color: #ffffff; /* 다크 모드 글자 색상 */
+    }
+}
+
+.info-container {
+    max-width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-container h1 {
+    font-size: 24px; /* 글씨 크기 조정 */
+    margin-bottom: 10px;
+}
+
+.info-container .image-container {
+    width: 100%;
+    max-width: 200px; /* 이미지 최대 폭 */
+    margin-bottom: 20px;
+}
+
+.info-container img {
+    width: 100%; /* 이미지 너비 100% */
+    height: auto; /* 높이 자동 조정 */
+    border-radius: 8px;
+}
+
+.info-container .content-container {
+    width: 100%;
+}
+
+.info-container p {
+    font-size: 16px; /* 글씨 크기 조정 */
+    margin-bottom: 10px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.info-container table {
+    width: 100%;
+    max-width: 600px; /* 표 최대 폭 */
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.info-container th, .info-container td {
+    padding: 12px;
+    border-bottom: 1px solid #dddddd;
+    text-align: left;
+}
+
+.info-container th {
+    background-color: #f2f2f2;
+}
+
+.info-container button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 18px; /* 버튼 글씨 크기 조정 */
+    border: none;
+    background-color: #6c757d; /* 회색 */
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.info-container button:hover {
+    background-color: #495057; /* 호버 시 어두운 회색 */
+}

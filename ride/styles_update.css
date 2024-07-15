@@ -1,0 +1,127 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  height: 105vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+.container {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  height: 90%;
+  max-height: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  overflow-y: auto;
+}
+
+.header {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#target-table {
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+th {
+  background-color: #e0e0e0;
+}
+
+.add-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.add-button img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.edit-button img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+.input-label {
+  font-size: 18px;
+  margin-right: 10px;
+  flex-basis: 90px;
+  white-space: nowrap;
+}
+
+input[type="text"],
+input[type="number"],
+select[type="status"],
+textarea[type="textarea"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #0d1b2a;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #1a2e44; /* 호버 시 배경색 변경 */
+}

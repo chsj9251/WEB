@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>RPM 로봇 관제 시스템</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="/styles_common.css">
+  <link rel="stylesheet" href="/styles_back.css">
+  <script>
+    function id_duplication() {
+      var manager_id = document.getElementById("manager_id").value;
+      $.ajax({
+        url: 'check_duplicate.php',
+        type: 'POST',
+        dataType: 'html',
+        data: {manager_id: manager_id},
+        success: function(response) {
+          $('#duplicate_message').html(response);
+          confirm_error();
+        },
+        error: function() {
+          alert('오류가 발생했습니다.');
+        }
+      });
+    }
+  
+    function confirm_error() {
+      var manager_pw = document.getElementById("manager_pw").value;
+      var manager_pw_confirm = document.getElementById("manager_pw_confirm").value;
+  
+      if (manager_pw === "" || manager_pw_confirm === "") {
+        $('#password_confirm_error').html("패스워드를 입력해주세요");
+      } else {
+        if (manager_pw === manager_pw_confirm) {
+          $('#password_confirm_error').html("패스워드가 일치합니다.");
+          var duplicate_message = $('#duplicate_message').text().trim();
+          if (duplicate_message === "사용 가능한 ID입니다.") {
+            $('#confirm_error').html(""); // 초기화
+            return true;
+          } else {
+            $('#confirm_error').html("ID를 다시 확인해 주세요.");
+            return false;
+          }
+        } else {
+          $('#password_confirm_error').html("패스워드가 일치하지 않습니다.");
+          return false;
+        }
+      }
+    }
+  
+    function formatPhoneNumber(input) {
+      let value = input.value.replace(/\D/g, '');
+      let formatted = value;
+  
+      if (value.length > 3 && value.length <= 6) {
+        formatted = value.slice(0, 3) + '-' + value.slice(3);
+      } else if (value.length > 6) {
+        formatted = value.slice(0, 3) + '-' + value.slice(3, 7) + '-' + value.slice(7);
+      }
+  
+      input.value = formatted;
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="back-button">
+      <img src="./icon/back.png" alt="뒤로가기" onclick="history.back()">
+    </div>
+    <h2>회원가입</h2>
+    <form action="join.php" method="post" onsubmit="return confirm_error()">
+      <div class="form-group">
+        <!--이름-->
+        <div class="input-row">
+          <label for="manager_name" class="input-label">이름 :</label>
+          <input type="text" id="manager_name" name="manager_name" required>
+        </div>
+
+        <!--ID 중복체크-->
+        <div class="form-group">
+          <div class="input-row">
+            <label for="manager_id" class="input-label">아이디 :</label>
+            <input type="text" id="manager_id" name="manager_id" required>
+            <button type="button" onclick="id_duplication()" class="custom-button">중복확인</button>
+          </div>
+          <div class="error-message"><p id="duplicate_message"></p></div>
+        </div>
+
+        <!--비밀번호-->
+        <div class="form-group">
+          <div class="input-row">
+            <label for="manager_pw" class="input-label">비밀번호 :</label>
+            <input type="password" id="manager_pw" name="manager_pw" required>
+          </div>
+          <div class="error-message"></div>
+          <div class="input-row">
+            <label for="manager_pw_confirm" class="input-label">비밀번호 확인 :</label>
+            <input type="password" id="manager_pw_confirm" name="manager_pw_confirm" required>
+          </div>
+          <div class="error-message"><p id="password_confirm_error"></p></div>
+        </div>
+
+        <!--이메일-->
+        <div class="form-group">
+          <div class="input-row">
+            <label for="manager_email" class="input-label">이메일 :</label>
+            <input type="text" id="manager_email" name="manager_email" required>
+          </div>
+        </div>
+
+        <!--전화번호-->
+        <div class="form-group">
+          <div class="input-row">
+            <label for="manager_number" class="input-label">전화번호 :</label>
+            <input type="text" id="manager_number" name="manager_number" required oninput="formatPhoneNumber(this)">
+          </div>
+        </div>
+
+        <!--회원가입-->
+        <div class="form-group">
+          <div class="error-message"><p id="confirm_error"></p></div>
+        </div>
+        <input type="submit" value="회원가입" name="join">
+      </div>
+    </form>
+  </div>
+</body>
+</html>
